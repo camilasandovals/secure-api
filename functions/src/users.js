@@ -1,4 +1,6 @@
+import { hashSync } from "bcrypt"
 import { db } from "./connect.js"
+import { salt } from "../service_account.js"
 
 export async function login(req, res) {
     const {email, password} = req.body
@@ -21,6 +23,7 @@ export async function signup(req, res) {
         res.staus(400).send({message:"EMail and password both required"})
         return
     }
+    
     await db.collection("users").add({email:email.toLowerCase(), password})
     login(req,res)
 }
