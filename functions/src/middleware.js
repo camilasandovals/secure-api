@@ -11,5 +11,14 @@ export function validToken(req, res, next) {
         res.status(401).send({ message: "Invalid secutiry token."})
         return
     }
+    req.decoded = decodedToken
+    next()
+}
+
+export function isAdmin(req, res, next) {
+    if(!req.decoded || !req.decoded.userType || req.decoded.userType !== 'admin'){
+        res.status(400).send({message: "Admin access required"})
+        return
+    }
     next()
 }

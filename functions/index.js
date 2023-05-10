@@ -2,7 +2,7 @@ import functions from "firebase-functions"
 import express from "express"
 import cors from "cors"
 import { login, signup } from "./src/users.js"
-import { validToken } from "./src/middleware.js"
+import { validToken, isAdmin } from "./src/middleware.js"
 
 const app = express()
 app.use(cors({origin: [
