@@ -23,7 +23,7 @@ export async function signup(req, res) {
         res.staus(400).send({message:"EMail and password both required"})
         return
     }
-    
+    const hashedPassword = hashSync(password, salt)
     await db.collection("users").add({email:email.toLowerCase(), password})
     login(req,res)
 }
