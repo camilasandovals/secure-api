@@ -17,6 +17,7 @@ app.post('/signup', signup)
 
 //now we setup protected routes
 app.get('/secretinfo', validToken, (req, res) => res.send({message: "You made it!"}))
+app.get('/supersecretinfo', validToken, isAdmin, (req,res) => res.send({message: "You mae it here, too"}))
 
 app.listen(3030, () => console.log('Listening on port 3030...'))
 
